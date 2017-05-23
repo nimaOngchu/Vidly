@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Vidly.Models.Customer>
+@{
+    ViewBag.Title = "Customers";
+}
+<table class="table table-condensed">
+    @foreach (var customer in Model)
+    {
+        var href = "/Customer/Details" + customer.Id;
+        <tr>
+            <td><a href=@href>@customer.Name</td>
+        </tr>
+    }
+</table>
+
