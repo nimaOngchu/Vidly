@@ -3,20 +3,24 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2 class="text-uppercase">@Model.Name</h2>
-
+<br/>
+<h4 class="text-uppercase">@Model.Name</h4>
+    
+      
 <div class="list-group">
     <div class="list-group-item">
         <h4 class="list-group-item-heading">Membership Type</h4>
         <p class="list-group-item-text"> @Model.MembershipType.MemberShipName</p>
     </div>
-  
-   @if (Model.BirthDate != null)
-   {
-    <div class="list-group-item">
-        <h4 class="list-group-item-heading">Date of birth</h4>
-        <p class="list-group-item-text">@Html.DisplayFor(m => m.BirthDate)</p>
-    </div>
+
+    @if (Model.BirthDate != null)
+    {
+        <div class="list-group-item">
+            <h4 class="list-group-item-heading">Date of birth</h4>
+            <p class="list-group-item-text">@Html.DisplayFor(m => m.BirthDate)</p>
+        </div>
     }
 </div>
+@Html.ActionLink("Edit Details", "Edit", "Customer", new { Model.Id }, new { @class = "btn-sm btn-primary", style = "text-decoration:none;" })
+
+

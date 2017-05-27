@@ -21,26 +21,71 @@ namespace Vidly.Controllers
             _context.Dispose();
         }
 
-        public ActionResult NewCustomer()
+        // GET: Customer Index
+        public ActionResult Index()
         {
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+
+
+            return View(customers);
+        }
+
+        //Create user 
+     
+        public ActionResult create()
+        {
+            ViewBag.Heading = "Create New Customer";
+            ViewBag.ButtonText = "Create";
             var MembershipType = _context.MembershipType.ToList();
-            var NewCustomerViewModel = new NewCustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 MembershipType = MembershipType
             };
            
 
-            return View(NewCustomerViewModel);
+            return View("CustomerForm",viewModel);
         }
-        // GET: Customer
 
-        public ActionResult Index()
+        //HTTPPOST for save user 
+        [HttpPost]
+        public ActionResult Save(Customer customer)
         {
-            var customers = _context.Customers.Include(c=> c.MembershipType).ToList();
-          
+            if (customer.Id == 0)
+            {
+                _context.Customers.Add(customer);
+            }
+            else {
+                var customerInDB = _context.Customers.Single(c => c.Id == customer.Id);
+              
+                customerInDB.Name = customer.Name;
+                customerInDB.MembershipTypeID = customer.MembershipTypeID;
+                customerInDB.BirthDate = customer.BirthDate;
+                customerInDB.isSubcribedToNewsletter = customer.isSubcribedToNewsletter;
+
+            }
             
-            return View(customers);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index","Customer");
         }
+
+        //Customer Edit Form
+        public ActionResult Edit(int id)
+        {
+            ViewBag.heading = "Edit Customer";
+            ViewBag.ButtonText = "Save";
+            var customers = _context.Customers.Find(id);
+            if (customers == null) {
+                return HttpNotFound("No Such Customer in Database");
+            }
+            var viewModel = new CustomerFormViewModel {
+                Customer = customers,
+                MembershipType = _context.MembershipType.ToList()
+            };
+
+            return View("CustomerForm",viewModel);
+        }
+
 
         public ActionResult Details( int ?id)
         {
