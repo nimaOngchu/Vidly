@@ -243,6 +243,50 @@
     <Compile Include="Migrations\201705231117201_populate-membershitype.Designer.cs">
       <DependentUpon>201705231117201_populate-membershitype.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705231213069_applyAnnotationToCustomerName.cs" />
+    <Compile Include="Migrations\201705231213069_applyAnnotationToCustomerName.Designer.cs">
+      <DependentUpon>201705231213069_applyAnnotationToCustomerName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270745169_MemberShipName-Added-To-MembershipType.cs" />
+    <Compile Include="Migrations\201705270745169_MemberShipName-Added-To-MembershipType.Designer.cs">
+      <DependentUpon>201705270745169_MemberShipName-Added-To-MembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270747101_MemberShipName-Record-inserted.cs" />
+    <Compile Include="Migrations\201705270747101_MemberShipName-Record-inserted.Designer.cs">
+      <DependentUpon>201705270747101_MemberShipName-Record-inserted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270758259_MemberShipName-Record-inserted-2.cs" />
+    <Compile Include="Migrations\201705270758259_MemberShipName-Record-inserted-2.Designer.cs">
+      <DependentUpon>201705270758259_MemberShipName-Record-inserted-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270759383_MemberShipName-Record-inserted-3.cs" />
+    <Compile Include="Migrations\201705270759383_MemberShipName-Record-inserted-3.Designer.cs">
+      <DependentUpon>201705270759383_MemberShipName-Record-inserted-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270805014_BirthDate-AddedTo-Customer.cs" />
+    <Compile Include="Migrations\201705270805014_BirthDate-AddedTo-Customer.Designer.cs">
+      <DependentUpon>201705270805014_BirthDate-AddedTo-Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270820174_BirthDate-madenullableType.cs" />
+    <Compile Include="Migrations\201705270820174_BirthDate-madenullableType.Designer.cs">
+      <DependentUpon>201705270820174_BirthDate-madenullableType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270928358_Movie-Table-Added.cs" />
+    <Compile Include="Migrations\201705270928358_Movie-Table-Added.Designer.cs">
+      <DependentUpon>201705270928358_Movie-Table-Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270933104_fields-AddedTo-Movie.cs" />
+    <Compile Include="Migrations\201705270933104_fields-AddedTo-Movie.Designer.cs">
+      <DependentUpon>201705270933104_fields-AddedTo-Movie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270936068_Movie-Name-set-NotNull.cs" />
+    <Compile Include="Migrations\201705270936068_Movie-Name-set-NotNull.Designer.cs">
+      <DependentUpon>201705270936068_Movie-Name-set-NotNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270937580_populate-Movie.cs" />
+    <Compile Include="Migrations\201705270937580_populate-Movie.Designer.cs">
+      <DependentUpon>201705270937580_populate-Movie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -315,6 +359,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Movies\Random.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Movies\index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -357,6 +404,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705231117201_populate-membershitype.resx">
       <DependentUpon>201705231117201_populate-membershitype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705231213069_applyAnnotationToCustomerName.resx">
+      <DependentUpon>201705231213069_applyAnnotationToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270745169_MemberShipName-Added-To-MembershipType.resx">
+      <DependentUpon>201705270745169_MemberShipName-Added-To-MembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270747101_MemberShipName-Record-inserted.resx">
+      <DependentUpon>201705270747101_MemberShipName-Record-inserted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270758259_MemberShipName-Record-inserted-2.resx">
+      <DependentUpon>201705270758259_MemberShipName-Record-inserted-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270759383_MemberShipName-Record-inserted-3.resx">
+      <DependentUpon>201705270759383_MemberShipName-Record-inserted-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270805014_BirthDate-AddedTo-Customer.resx">
+      <DependentUpon>201705270805014_BirthDate-AddedTo-Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270820174_BirthDate-madenullableType.resx">
+      <DependentUpon>201705270820174_BirthDate-madenullableType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270928358_Movie-Table-Added.resx">
+      <DependentUpon>201705270928358_Movie-Table-Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270933104_fields-AddedTo-Movie.resx">
+      <DependentUpon>201705270933104_fields-AddedTo-Movie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270936068_Movie-Name-set-NotNull.resx">
+      <DependentUpon>201705270936068_Movie-Name-set-NotNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270937580_populate-Movie.resx">
+      <DependentUpon>201705270937580_populate-Movie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
