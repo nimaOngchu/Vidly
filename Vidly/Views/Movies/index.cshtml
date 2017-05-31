@@ -4,6 +4,8 @@
     ViewBag.Title = "Movies";
 }
 <br />
+<h3>Movies</h3>
+<br />
 @Html.ActionLink("Upload Movie", "Create","Movies", null, new { @class = "btn-sm btn-primary", style = "text-decoration:none;" })
 <br />
 <br />
@@ -17,7 +19,7 @@
 
         <tr>
             <td class="text-capitalize">@Html.ActionLink(movie.Name, "Details", "Movies", new { movie.ID }, null)</td>
-            <td>@movie.</td>
+            <td>@movie.Genre.type</td>
         </tr>
     }
 </table>

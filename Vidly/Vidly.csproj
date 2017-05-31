@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -80,12 +84,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -195,7 +211,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -287,9 +305,39 @@
     <Compile Include="Migrations\201705270937580_populate-Movie.Designer.cs">
       <DependentUpon>201705270937580_populate-Movie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705280129440_somethingChanged.cs" />
+    <Compile Include="Migrations\201705280129440_somethingChanged.Designer.cs">
+      <DependentUpon>201705280129440_somethingChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705280202431_genere-removed-from-movies.cs" />
+    <Compile Include="Migrations\201705280202431_genere-removed-from-movies.Designer.cs">
+      <DependentUpon>201705280202431_genere-removed-from-movies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705280205185_genere-added-as-seperate-column.cs" />
+    <Compile Include="Migrations\201705280205185_genere-added-as-seperate-column.Designer.cs">
+      <DependentUpon>201705280205185_genere-added-as-seperate-column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705280207464_Added-referenceTo-Genre-in-movies.cs" />
+    <Compile Include="Migrations\201705280207464_Added-referenceTo-Genre-in-movies.Designer.cs">
+      <DependentUpon>201705280207464_Added-referenceTo-Genre-in-movies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705280213087_Added-referenceTo-Genre-in-moviesAgain.cs" />
+    <Compile Include="Migrations\201705280213087_Added-referenceTo-Genre-in-moviesAgain.Designer.cs">
+      <DependentUpon>201705280213087_Added-referenceTo-Genre-in-moviesAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705280215591_populateGenre.cs" />
+    <Compile Include="Migrations\201705280215591_populateGenre.Designer.cs">
+      <DependentUpon>201705280215591_populateGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705300422360_validationAdded.cs" />
+    <Compile Include="Migrations\201705300422360_validationAdded.Designer.cs">
+      <DependentUpon>201705300422360_validationAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Min18YearsIfAMember.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -298,6 +346,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\CustomerFromViewModel.cs" />
+    <Compile Include="ViewModel\MovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-yeti.css" />
@@ -440,6 +489,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705270937580_populate-Movie.resx">
       <DependentUpon>201705270937580_populate-Movie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705280129440_somethingChanged.resx">
+      <DependentUpon>201705280129440_somethingChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705280202431_genere-removed-from-movies.resx">
+      <DependentUpon>201705280202431_genere-removed-from-movies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705280205185_genere-added-as-seperate-column.resx">
+      <DependentUpon>201705280205185_genere-added-as-seperate-column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705280207464_Added-referenceTo-Genre-in-movies.resx">
+      <DependentUpon>201705280207464_Added-referenceTo-Genre-in-movies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705280213087_Added-referenceTo-Genre-in-moviesAgain.resx">
+      <DependentUpon>201705280213087_Added-referenceTo-Genre-in-moviesAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705280215591_populateGenre.resx">
+      <DependentUpon>201705280215591_populateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705300422360_validationAdded.resx">
+      <DependentUpon>201705300422360_validationAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
